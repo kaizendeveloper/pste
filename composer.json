@@ -2,6 +2,6 @@
   "name": "kaizendeveloper/pste",
   "description": "PHP Simple Template Engine",
   "require": {
-    "php": "~5.3.3"
+    "php": ">=5.3.3"
   }
 }
