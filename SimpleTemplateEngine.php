@@ -17,6 +17,7 @@ class SimpleTemplateEngine {
         //Alla costruzione stabiliamo la wd
         $this->workingDirectory = dirname(__FILE__);
 
+
     }
 
     /**
