@@ -3,5 +3,11 @@
   "description": "PHP Simple Template Engine",
   "require": {
     "php": ">=5.3.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Views": ""
+    }
   }
+
 }
