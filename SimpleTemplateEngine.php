@@ -10,12 +10,15 @@ namespace Views;
 class SimpleTemplateEngine {
 
     //Per capire a partire da dove cominciamo a caricare i file
-    protected $workingDirectory;
+    protected $working_directory;
+
+    protected $asset_directory;
 
     public function __construct() {
 
         //Alla costruzione stabiliamo la wd
-        $this->workingDirectory = dirname(__FILE__);
+        $this->working_directory = dirname(__FILE__);
+        $this->asset_directory = dirname(__FILE__);
 
     }
 
@@ -26,10 +29,11 @@ class SimpleTemplateEngine {
      * @param array $tpl
      * @return string
      */
-    public function caricaTemplate($nomeTemplate, $tpl = array()){
+    public function caricaTemplate($nomeTemplate, $tpl = array())
+    {
         $tplFunc = $this;
         ob_start();
-            include $this->workingDirectory . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $nomeTemplate;
+            include $this->working_directory . DIRECTORY_SEPARATOR . $nomeTemplate;
         return ob_get_clean();
     }
 
@@ -79,8 +83,20 @@ class SimpleTemplateEngine {
      */
     public function changeWorkingDirectory($newWorkingDirectory)
     {
-        $this->workingDirectory = $newWorkingDirectory;
+        $this->working_directory = $newWorkingDirectory;
         return $this;
     }
+
+    /**
+     * Definisce una directory usata per caricare gli assets per default
+     * @param $newAssetsDirectory
+     * @return this
+     */
+    public function changeAssetsDirectory($newAssetsDirectory)
+    {
+        $this->working_directory = $newAssetsDirectory;
+        return $this;
+    }
+
 
 }
