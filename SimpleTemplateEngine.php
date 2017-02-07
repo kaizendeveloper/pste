@@ -31,10 +31,14 @@ class SimpleTemplateEngine {
      */
     public function caricaTemplate($nomeTemplate, $tpl = array())
     {
+        //Incorporiamo l'oggetto, così conferiamo le funzionalità della classe stessa
         $tplFunc = $this;
+
         ob_start();
-            include $this->working_directory . DIRECTORY_SEPARATOR . $nomeTemplate;
+        $fileToInclude = $this->cleanDoubleSlash($this->working_directory . DIRECTORY_SEPARATOR . $nomeTemplate);
+        include $fileToInclude;
         return ob_get_clean();
+
     }
 
     /**
@@ -77,6 +81,21 @@ class SimpleTemplateEngine {
     }
 
     /**
+     * Pulisce gli slash ripetuti in una stringa
+     *
+     * @param $stringaDaPulire
+     * @return mixed
+     */
+    private function cleanDoubleSlash($stringaDaPulire){
+
+        //Prendiamo il percorso del file, eliminando gli slash DIRECTORY_SEPARATOR e '\' di troppo
+        //evitando di toglierli nel caso di http://www.elle.it, invece per i sistemi windows
+        //evitiamo di togliere gli inizi delle cartelle di rete \\host\percorso
+        return preg_replace('/(?<!:)(\/{2,})|(?<!^)(\\{2,})/i', DIRECTORY_SEPARATOR , $stringaDaPulire);
+
+    }
+
+    /**
      * Definisce una working directory differente a quella di default
      * @param $newWorkingDirectory
      * @return this
@@ -97,6 +116,8 @@ class SimpleTemplateEngine {
         $this->working_directory = $newAssetsDirectory;
         return $this;
     }
+
+    //@todo: Implementare una soluzione semplice per gli assets
 
 
 }
