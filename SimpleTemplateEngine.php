@@ -107,6 +107,15 @@ class SimpleTemplateEngine {
     }
 
     /**
+     * Restituisce il percorso da dove si leggeranno i template
+     * @return string
+     */
+    public function getWorkingDirectory()
+    {
+        return $this->working_directory;
+    }
+
+    /**
      * Definisce una directory usata per caricare gli assets per default
      * @param $newAssetsDirectory
      * @return this
