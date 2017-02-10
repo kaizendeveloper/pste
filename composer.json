@@ -9,6 +9,9 @@
   "autoload": {
     "psr-4": {
       "Views\\": ""
+    },
+    "psr-0": {
+      "Views\\": ""
     }
   }
 
